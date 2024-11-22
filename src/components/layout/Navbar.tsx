@@ -1,6 +1,6 @@
 import { ThemeSwitcher } from "../elements/ThemeSwitcher";
 
-const Header = () => {
+const Navbar = () => {
   return (
     <header>
       <div className="flex justify-between items-center">
@@ -16,4 +16,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
