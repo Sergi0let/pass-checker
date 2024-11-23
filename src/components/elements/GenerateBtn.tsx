@@ -1,6 +1,6 @@
+import { Button } from "@/components";
 import { Settings } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/button";
 
 type GenerateBtnProps = {
   handleGeneratePassword: () => void;
@@ -27,4 +27,4 @@ const GenerateBtn = ({
   );
 };
 
-export default GenerateBtn;
+export { GenerateBtn };

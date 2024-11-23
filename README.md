@@ -1,51 +1,63 @@
-# React + TypeScript + Vite
+### **Основний функціонал**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. **Поле для введення пароля:**
+    
+    - Є кнопка для показу/приховання пароля.
+    - Кнопка для очищення поля, яка з'являється, якщо поле не порожнє.
+2. **Індикатор надійності пароля:**
+    
+    - Розташований під полем і складається з трьох секцій:
+        - **Сірий:** поле порожнє.
+        - **Червоний:** пароль менше 8 символів.
+        - **Легкий пароль:** перша секція червона, решта — сірі.
+        - **Середній пароль:** перші дві секції жовті, остання — сіра.
+        - **Складний пароль:** усі секції зелені.
+    - Логіка надійності пароля:
+        - Тільки літери, цифри або символи — **легкий**.
+        - Комбінація літер із символами/цифрами — **середній**.
+        - Наявність літер, цифр та символів — **складний**.
+3. **Додаткова інформація про пароль:**
+    
+    - Відображення часу зламу пароля (на основі бібліотеки `zxcvbn`).
+    - Статус надійності пароля: слабкий, середній, сильний.
+4. **Функціонал кнопки під полем:**
+    
+    - **Генерація пароля:** якщо поле порожнє.
+    - **Копіювання пароля:** якщо пароль є. Відображається повідомлення про успішне копіювання.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### **Технологічна реалізація**
 
-## Expanding the ESLint configuration
+- **Мови:** Реалізовано двомовність (англійська та українська) з використанням `i18next`.
+- **Темна та світла теми:** Реалізовано через Tailwind.
+- **Стилі:** Tailwind CSS із використанням бібліотеки `shadCn` для UI-компонентів.
+- **Структура проекту:**
+    - Компоненти знаходяться у папці `components` та розділені за роллю на:
+        - `elements` — базові елементи.
+        - `icons` — іконки.
+        - `layout` — компоненти макета.
+        - `ui` — UI-елементи.
+    - Іменний імпорт компонентів зі шляхом `@/components` для зручності.
+- **Інструменти форматування:**
+    - Використовується `prettier-plugin-tailwindcss` для автоформатування CSS-класів.
+    - Автоматичне форматування імпортів через `prettier`.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+### **Особливості**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Генерація пароля:** Реалізовано генерацію пароля, що включає літери, цифри та спеціальні символи.
+- **Копіювання в буфер обміну:** Кнопка для копіювання супроводжується сповіщенням про успішне виконання дії.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### **Результат**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# pass-checker
+Цей додаток демонструє:
+
+- Розробку інтерактивних інтерфейсів із врахуванням UI/UX.
+- Використання сучасних технологій (`React`, `Tailwind`, `i18next`).
+- Організовану структуру проекту для легкого масштабування.
+
+**Ціль:** Тестове завдання виконано відповідно до умов із додатковими покращеннями для кращої функціональності та зручності щоб проектом можна було користуватися як повноціним інструментом для взаємодії з паролями.

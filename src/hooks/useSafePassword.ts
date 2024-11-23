@@ -13,8 +13,9 @@ export default () => {
     }
 
     if (password.length < 8) {
-      return { safe: "short", levels: ["red", "red", "red"] };
+      return { safe: "weak", levels: ["red", "red", "red"] };
     }
+
     const hasLetters = /[a-zA-Zа-яА-ЯёЁїЇєЄіІґҐ]/.test(password);
     const hasDigits = /\d/.test(password);
     const hasSymbols = /[\p{P}\p{S}]/u.test(password);

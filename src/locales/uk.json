@@ -3,6 +3,7 @@
   "hidePassword": "Приховати пароль",
   "copyBtn": "Скопіювати пароль",
   "clearPassword": "Очистити пароль",
+  "cardPassStrength": "Надійність паролю",
   "generateBtn": "Згенерувати пароль",
   "toastCopied": "скопійовано у буфер обміну",
   "toastPass": "пароль",

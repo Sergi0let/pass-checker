@@ -1,15 +1,13 @@
-import MainCard from "./components/layout/MainCard";
-import Navbar from "./components/layout/Navbar";
-import { ThemeProvider } from "./components/layout/ThemeProvider";
+import { MainCard, Navbar, ThemeProvider } from "@/components";
 import "./i18n";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="mx-auto container p-4">
+      <div className="container mx-auto p-4">
         <Navbar />
-        <h1 className="text-3xl font-bold text-center mb-4">Iron Pass🦾</h1>
-        <MainCard className="max-w-[800px] mx-auto" />
+        <h1 className="mb-4 text-center text-3xl font-bold">Iron Pass🦾</h1>
+        <MainCard className="mx-auto max-w-[800px]" />
       </div>
     </ThemeProvider>
   );

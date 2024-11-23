@@ -1,12 +1,11 @@
-import LanguageSwitcher from "../elements/LangSwitcher";
-import { ThemeSwitcher } from "../elements/ThemeSwitcher";
+import { LanguageSwitcher, ThemeSwitcher } from "@/components";
 
 const Navbar = () => {
   return (
     <header>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <img
-          src="/password-manager.png"
+          src="/password-manager.webp"
           alt="Image logo"
           width={60}
           height={60}
@@ -20,4 +19,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export { Navbar };

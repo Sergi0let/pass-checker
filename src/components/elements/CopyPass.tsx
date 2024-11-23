@@ -1,6 +1,6 @@
+import { Button } from "@/components";
 import { Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/button";
 
 type CopyPassProps = {
   handleCopyPassword: () => void;
@@ -9,6 +9,7 @@ type CopyPassProps = {
 
 const CopyPass = ({ handleCopyPassword, className }: CopyPassProps) => {
   const { t } = useTranslation();
+
   return (
     <Button
       onClick={handleCopyPassword}
@@ -24,4 +25,4 @@ const CopyPass = ({ handleCopyPassword, className }: CopyPassProps) => {
   );
 };
 
-export default CopyPass;
+export { CopyPass };

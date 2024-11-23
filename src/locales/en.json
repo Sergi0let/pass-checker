@@ -2,6 +2,7 @@
   "showPassword": "Show Password",
   "hidePassword": "Hide Password",
   "clearPassword": "Clear Password",
+  "cardPassStrength": "Password Strength",
   "copyBtn": "Copy Password",
   "generateBtn": "Generate Password",
   "toastCopied": "copied to clipboard",

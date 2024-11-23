@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -12,14 +13,18 @@ const ShowBtn = ({ show = false, toggleShow, className }: ShowBtnProps) => {
   return (
     <button
       onClick={toggleShow}
-      className={className}
+      className={cn(className, "group")}
       aria-label={show ? t("hidePassword") : t("showPassword")}
       aria-pressed={show}
       title={show ? t("hidePassword") : t("showPassword")}
     >
-      {show ? <Eye /> : <EyeOff />}
+      {show ? (
+        <Eye className="hover-icon" />
+      ) : (
+        <EyeOff className="hover-icon" />
+      )}
     </button>
   );
 };
 
-export default ShowBtn;
+export { ShowBtn };

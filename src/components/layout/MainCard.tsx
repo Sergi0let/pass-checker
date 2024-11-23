@@ -1,21 +1,11 @@
-import useCharTypes from "@/hooks/useCharTypes";
+import { ClearBtn, CopyPass, GenerateBtn, ShowBtn } from "@/components";
 import useCrackTime from "@/hooks/useCrackTime";
 import useSafePassword from "@/hooks/useSafePassword";
-import {
-  capitalize,
-  changeColor,
-  colorClasses,
-  generateRandomPassword,
-} from "@/lib/utils";
+import { changeColor, colorClasses, generateRandomPassword } from "@/lib/utils";
 import { ShieldCheck } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import ClearBtn from "../elements/ClearBtn";
-import CopyPass from "../elements/CopyPass";
-import GenerateBtn from "../elements/GenerateBtn";
-import ShowBtn from "../elements/ShowBtn";
-import { Badge } from "../ui/badge";
 import {
   Card,
   CardContent,
@@ -35,7 +25,6 @@ const MainCard = ({ className }: MainCardProps) => {
   const { t } = useTranslation();
   const { passwordValue, safeData, updatePassword } = useSafePassword();
   const { crackTime } = useCrackTime(passwordValue);
-  const { charTypes } = useCharTypes(passwordValue);
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updatePassword(e.target.value);
   };
@@ -45,7 +34,6 @@ const MainCard = ({ className }: MainCardProps) => {
   const handleCopyPassword = () => {
     navigator.clipboard.writeText(passwordValue);
     toast(`${passwordValue} - ${t("toastCopied")}`);
-    setTimeout(() => toast(`${safeData.safe} ${t("toastPass")}`), 1500);
   };
 
   const handleShowPassword = () => {
@@ -92,21 +80,15 @@ const MainCard = ({ className }: MainCardProps) => {
             key={i}
             className={`${
               colorClasses[color] || "bg-gray-500"
-            } w-full h-2 rounded-md transition-all duration-200 ease-in-out`}
+            } h-2 w-full rounded-md transition-all duration-200 ease-in-out`}
           ></div>
         ))}
       </CardFooter>
       <CardContent>
-        <div className="flex items-center gap-2">
-          <strong>{t("cardPassCharTypes")}:</strong>
-          <div className="flex gap-2">
-            {charTypes.map((type: string) => (
-              <Badge variant="outline" key={type}>
-                {capitalize(type)}
-              </Badge>
-            ))}
-          </div>
-        </div>
+        <p>
+          <strong>{t("cardPassStrength")}:</strong> {safeData.safe}
+        </p>
+
         <p>
           <strong>{t("cardPassCrack")}:</strong> {crackTime}
         </p>
@@ -126,4 +108,4 @@ const MainCard = ({ className }: MainCardProps) => {
   );
 };
 
-export default MainCard;
+export { MainCard };
