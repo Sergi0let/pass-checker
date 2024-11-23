@@ -1,14 +1,20 @@
 import useCharTypes from "@/hooks/useCharTypes";
 import useCrackTime from "@/hooks/useCrackTime";
 import useSafePassword from "@/hooks/useSafePassword";
-import dictionary from "@/lib/dictionary";
-import { capitalize, changeColor, colorClasses } from "@/lib/utils";
+import {
+  capitalize,
+  changeColor,
+  colorClasses,
+  generateRandomPassword,
+} from "@/lib/utils";
 import { ShieldCheck } from "lucide-react";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import ClearBtn from "../elements/ClearBtn";
+import CopyPass from "../elements/CopyPass";
+import GenerateBtn from "../elements/GenerateBtn";
 import ShowBtn from "../elements/ShowBtn";
-import SubmitPass from "../elements/SubmitPass";
 import { Badge } from "../ui/badge";
 import {
   Card,
@@ -26,6 +32,7 @@ type MainCardProps = {
 
 const MainCard = ({ className }: MainCardProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation();
   const { passwordValue, safeData, updatePassword } = useSafePassword();
   const { crackTime } = useCrackTime(passwordValue);
   const { charTypes } = useCharTypes(passwordValue);
@@ -37,30 +44,33 @@ const MainCard = ({ className }: MainCardProps) => {
 
   const handleCopyPassword = () => {
     navigator.clipboard.writeText(passwordValue);
-    toast(`${passwordValue} - ${dictionary.toastCopied}`);
-    setTimeout(() => toast(`${safeData.safe} ${dictionary.toastPass}`), 1500);
+    toast(`${passwordValue} - ${t("toastCopied")}`);
+    setTimeout(() => toast(`${safeData.safe} ${t("toastPass")}`), 1500);
   };
 
   const handleShowPassword = () => {
     setShowPassword((val) => !val);
   };
+  const handleGeneratePassword = useCallback(() => {
+    updatePassword(generateRandomPassword());
+  }, [updatePassword]);
 
   return (
     <Card className={className}>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <ShieldCheck className={`${changeColor(safeData.safe)}`} />
-          {dictionary.cardPassTitle}
+          {t("cardPassTitle")}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Label htmlFor="pass">{dictionary.cardPassLabel}</Label>
+        <Label htmlFor="pass">{t("cardPassLabel")}</Label>
         <div className="relative h-full">
           <Input
             onChange={handlePasswordChange}
             type={showPassword ? "text" : "password"}
             id="pass"
-            placeholder={dictionary.cardPassPlaceholder}
+            placeholder={t("cardPassPlaceholder")}
             value={passwordValue}
             className="pr-10"
           />
@@ -87,20 +97,30 @@ const MainCard = ({ className }: MainCardProps) => {
         ))}
       </CardFooter>
       <CardContent>
-        <div className="flex gap-2 pb-2">
-          {charTypes.map((type: string) => (
-            <Badge variant="outline" key={type}>
-              {capitalize(type)}
-            </Badge>
-          ))}
+        <div className="flex items-center gap-2">
+          <strong>{t("cardPassCharTypes")}:</strong>
+          <div className="flex gap-2">
+            {charTypes.map((type: string) => (
+              <Badge variant="outline" key={type}>
+                {capitalize(type)}
+              </Badge>
+            ))}
+          </div>
         </div>
         <p>
-          <strong>{dictionary.cardPassCrack}:</strong> {crackTime}
+          <strong>{t("cardPassCrack")}:</strong> {crackTime}
         </p>
-        <SubmitPass
-          passwordValue={passwordValue}
-          handleCopyPassword={handleCopyPassword}
-        />
+        {passwordValue ? (
+          <CopyPass
+            className="mt-4 w-full"
+            handleCopyPassword={handleCopyPassword}
+          />
+        ) : (
+          <GenerateBtn
+            className="mt-4 w-full"
+            handleGeneratePassword={handleGeneratePassword}
+          />
+        )}
       </CardContent>
     </Card>
   );

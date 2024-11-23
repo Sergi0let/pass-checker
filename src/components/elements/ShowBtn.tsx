@@ -1,5 +1,5 @@
-import dictionary from "@/lib/dictionary";
 import { Eye, EyeOff } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type ShowBtnProps = {
   show: boolean;
@@ -8,13 +8,14 @@ type ShowBtnProps = {
 };
 
 const ShowBtn = ({ show = false, toggleShow, className }: ShowBtnProps) => {
+  const { t } = useTranslation();
   return (
     <button
       onClick={toggleShow}
       className={className}
-      aria-label={show ? dictionary.hidePassword : dictionary.showPassword}
+      aria-label={show ? t("hidePassword") : t("showPassword")}
       aria-pressed={show}
-      title={show ? dictionary.hidePassword : dictionary.showPassword}
+      title={show ? t("hidePassword") : t("showPassword")}
     >
       {show ? <Eye /> : <EyeOff />}
     </button>

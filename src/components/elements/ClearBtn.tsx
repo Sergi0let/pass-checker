@@ -1,5 +1,5 @@
 import { SearchX } from "lucide-react";
-
+import { useTranslation } from "react-i18next";
 type ClearBtnProps = {
   isShow: string;
   deletePassword: () => void;
@@ -12,11 +12,18 @@ const ClearBtn = ({
   deletePassword,
   className,
   size = 24,
-}: ClearBtnProps) =>
-  isShow.length > 0 ? (
-    <button onClick={deletePassword} className={className}>
+}: ClearBtnProps) => {
+  const { t } = useTranslation();
+  return isShow.length > 0 ? (
+    <button
+      aria-label={t("clearPassword")}
+      title={t("clearPassword")}
+      onClick={deletePassword}
+      className={className}
+    >
       <SearchX size={size} />
     </button>
   ) : null;
+};
 
 export default ClearBtn;

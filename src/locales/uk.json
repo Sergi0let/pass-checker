@@ -1,0 +1,14 @@
+{
+  "showPassword": "Показати пароль",
+  "hidePassword": "Приховати пароль",
+  "copyBtn": "Скопіювати пароль",
+  "clearPassword": "Очистити пароль",
+  "generateBtn": "Згенерувати пароль",
+  "toastCopied": "скопійовано у буфер обміну",
+  "toastPass": "пароль",
+  "cardPassTitle": "Перевірка пароля",
+  "cardPassLabel": "Введіть пароль",
+  "cardPassPlaceholder": "Введіть ваш пароль",
+  "cardPassCrack": "Час зламу",
+  "cardPassCharTypes": "Типи символів"
+}

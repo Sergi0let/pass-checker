@@ -1,3 +1,4 @@
+import LanguageSwitcher from "../elements/LangSwitcher";
 import { ThemeSwitcher } from "../elements/ThemeSwitcher";
 
 const Navbar = () => {
@@ -5,12 +6,15 @@ const Navbar = () => {
     <header>
       <div className="flex justify-between items-center">
         <img
-          src="./public/password-manager.png"
+          src="/password-manager.png"
           alt="Image logo"
           width={60}
           height={60}
         />
-        <ThemeSwitcher />
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher />
+          <ThemeSwitcher />
+        </div>
       </div>
     </header>
   );
